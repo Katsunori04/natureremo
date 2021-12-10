@@ -1,5 +1,21 @@
 import natureremo
-natureremo = natureremo.NatureRemo(
-    "PFic-ToYGpL9213vUCC9ezdz-8_72HAvhKn52wKy0Po.cb51IXE-fh8d4rJdC_Erzr3JYf7I9_oO6i4FJliz56E")
+import os
+import csv
 
-print(natureremo.get_devices())
+acccess_token = "hogehoge"
+natureremo = natureremo.NatureRemo(acccess_token)
+
+time = natureremo.get_time()
+temperture = natureremo.get_temperture()
+humidity = natureremo.get_humidity()
+hue = natureremo.get_hue()
+
+if os.path.exists("data.csv"):
+    with open("data.csv", mode='a') as data:
+        w_data = csv.writer(data)
+        w_data.writerow([time, temperture, humidity, hue])
+else:
+    with open("data.csv", mode='w') as data:
+        w_data = csv.writer(data)
+        w_data.writerow(["time", "temperture", "humidity", "hue"])
+        w_data.writerow([time, temperture, humidity, hue])
