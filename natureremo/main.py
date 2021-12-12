@@ -10,12 +10,14 @@ temperture = natureremo.get_temperture()
 humidity = natureremo.get_humidity()
 hue = natureremo.get_hue()
 
-if os.path.exists("data.csv"):
-    with open("data.csv", mode='a') as data:
+cwd_path = os.getcwd()
+
+if os.path.exists(cwd_path + "/data.csv"):
+    with open(cwd_path + "/data.csv", mode='a') as data:
         w_data = csv.writer(data)
         w_data.writerow([time, temperture, humidity, hue])
 else:
-    with open("data.csv", mode='w') as data:
+    with open(cwd_path + "/data.csv", mode='w') as data:
         w_data = csv.writer(data)
         w_data.writerow(["time", "temperture", "humidity", "hue"])
         w_data.writerow([time, temperture, humidity, hue])
